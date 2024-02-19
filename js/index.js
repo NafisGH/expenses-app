@@ -45,7 +45,8 @@ for (let i = 0; i < selectSingle_labels.length; i++) {
 }
 //---------------------------------------------------------------
 const limitExpenseNode = document.querySelector(".js-limit-expense"); // limitNode
-let limit = parseInt(limitExpenseNode.innerText)
+// let limit = parseInt(limitExpenseNode.innerText)
+let limit = 0;
 
 function initLimit() {
   const limitFromStorage = parseInt(localStorage.getItem(STORAGE_LABLE_LIMIT));
@@ -69,9 +70,10 @@ render();
 // Стартовые значения
 initApp(expenses);
 function initApp() {
-  // limitExpenseNode.innerText = 0;
+  limitExpenseNode.innerText = limit;
   sumExpenseNode.innerText = getTotalSum(expenses);
   // statusExpenseNode.innerText = STATUS_IN_LIMIT;
+  
 }
 
 // Слушатель по нажатию на Enter
@@ -103,6 +105,9 @@ buttonNode.addEventListener("click", function () {
     inputNode.classList.add("expense-input-red")
     selectSingle_title.classList.add("__select__title-red")
     return;
+  } else {
+    inputNode.classList.remove("expense-input-red")
+    selectSingle_title.classList.remove("__select__title-red")
   }
 
   // Создаем обьект с суммой и категорией
