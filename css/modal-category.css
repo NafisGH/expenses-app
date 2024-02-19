@@ -72,6 +72,10 @@ h1 {
   background-color: rgb(0, 148, 255);
 }
 
+.__select__title-red {
+  border: 1px dashed red;
+}
+
 .reset {
   display: -webkit-box;
   display: -ms-flexbox;

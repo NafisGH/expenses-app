@@ -40,10 +40,17 @@ h1 {
   border-radius: 15px;
   padding: 10px;
 
-  input {
+.expense-input {
     width: 200px;
     margin-bottom: 10px;
+    padding: 5px;
+    
   }
+
+  .expense-input-red {
+    border: 2px dashed red;
+  }
+
   .categorySelect {
     padding: 5px;
     width: 210px;

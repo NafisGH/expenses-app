@@ -71,7 +71,7 @@ initApp(expenses);
 function initApp() {
   // limitExpenseNode.innerText = 0;
   sumExpenseNode.innerText = getTotalSum(expenses);
-  statusExpenseNode.innerText = STATUS_IN_LIMIT;
+  // statusExpenseNode.innerText = STATUS_IN_LIMIT;
 }
 
 // Слушатель по нажатию на Enter
@@ -87,16 +87,21 @@ btnResetExpensesNode.addEventListener("click", resetAllExpenses);
 buttonNode.addEventListener("click", function () {
   // плучаем значение из поля ввода
   const expense = getExpense();
-
   // Проверяем, является ли значение пустой строкой или не числом
-  if (isNaN(expense) || expense === "") {
-    return;
-  }
+  // if (isNaN(expense) || expense === "") {
+  //   inputNode.classList.add("expense-input-red")
+  //   return;
+  // }
 
   // Получаем категорию записываем в переменную и проверяем ее
   const currentCategory = getSelectedCategory();
+  console.log('currentCategory', currentCategory)
   // Проверяем, выбрана ли категория
-  if (currentCategory === false) {
+
+
+  if ((isNaN(expense) || expense === "") && (isNaN(currentCategory) || !currentCategory)) {
+    inputNode.classList.add("expense-input-red")
+    selectSingle_title.classList.add("__select__title-red")
     return;
   }
 
@@ -116,15 +121,6 @@ buttonNode.addEventListener("click", function () {
   clearInput();
 });
 
-// inputNode.addEventListener('input', () => {
-//   const expense = getExpense()
-//   if (isNaN(expense) || expense === '') {
-//     buttonNode.disabled = true
-//   } else {
-//     buttonNode.disabled = false
-//   }
-// })
-
 // Ф-ия Сброс всех данных до начальных значений
 function resetAllExpenses() {
   expenses.length = 0;
@@ -136,6 +132,8 @@ function resetAllExpenses() {
   restCategory();
   masageLimit.classList.remove("masage-limit-active");
   masageLimit.classList.add("masage-limit-hidden");
+  inputNode.classList.remove("expense-input-red")
+  selectSingle_title.classList.remove("__select__title-red")
 }
 
 // Ф-ия Получения категории
@@ -216,11 +214,9 @@ function renderStatus() {
   sumExpenseNode.innerText = total;
 
   if (total <= limit) {
-    console.log("Within limit");
     statusExpenseNode.innerText = STATUS_IN_LIMIT;
     statusExpenseNode.classList.remove(STATUS_OUT_OF_LIMIT_CLASSNAME); // Убираем класс, если он был добавлен ранее
   } else {
-    console.log("Exceeded limit");
     statusExpenseNode.classList.add(STATUS_OUT_OF_LIMIT_CLASSNAME);
     statusExpenseNode.innerText = `${STATUS_OUT_OF_LIMIT} на ${total - limit} ${currencyRub}`;
     
