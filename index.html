@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Учет расходов</h1>
+        <div class="row-form">
+            <div>
+                <input class="js-expense-input expense-input" type="text" placeholder="введите сумму">
+            </div>
+            <p class="js-masage-limit masage-limit-hidden">Введите лимит !!!</p>
+            <div class="container__inputs">
+
+                <form>
+                    <div class="__select" data-state="">
+                        <div class="__select__title" data-default="Категория">Категория</div>
+                        
+                        <div class="__select__content">
+                            <input id="singleSelect0" class="__select__input" type="radio" name="singleSelect"
+                                checked />
+                            <label for="singleSelect0" class="__select__label">Категория</label>
+
+                            <input id="singleSelect1" class="__select__input" type="radio" name="singleSelect" />
+                            <label for="singleSelect1" class="__select__label">Продукты</label>
+
+                            <input id="singleSelect2" class="__select__input" type="radio" name="singleSelect" />
+                            <label for="singleSelect2" class="__select__label">Кафе</label>
+
+                            <input id="singleSelect3" class="__select__input" type="radio" name="singleSelect" />
+                            <label for="singleSelect3" class="__select__label">Кварплата</label>
+
+                            <input id="singleSelect4" class="__select__input" type="radio" name="singleSelect" />
+                            <label for="singleSelect4" class="__select__label">Авто</label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <button class="js-button-add-expense">Добавить</button>
+        </div>
+
+        <div class="row-data">
+            <div class="row-data__wrapper">
+                <div class="row-data__wrapper-limit-sum-status">
+                    <p class="row-data__limit">Литит: <span class="js-limit-expense"></span> руб.
+                        <img class="js-btn-edit-limit btn-edit-limite" src="./resours/svg/edit.svg" alt="">
+                    </p>
+                    <p class="row-data__sum">Сумма: <span class="js-sum-expense"></span> руб.</p>
+                    <p class="row-data__status">Статус: <span class="js-status-expense status"></span></p>
+                </div>
+                <div class="row-data__history">
+                    <h2>История</h2>
+                    <div class="js-history-expenses"></div>
+                </div>
+            </div>
+            <button class="js-btn-reset-expenses btn-reset">reset expenses</button>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
