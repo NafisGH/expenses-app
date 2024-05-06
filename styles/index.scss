@@ -15,16 +15,16 @@ h1 {
 }
 
 .masage-limit-hidden {
-    display: none;
+  display: none;
 }
 .masage-limit-active {
-    display: block;
-    margin-bottom: 10px;
-    color: red;
-    border: 1px dashed red;
-    width: 200px;
-    padding: 3px;
-    text-align: center;
+  display: block;
+  margin-bottom: 10px;
+  color: red;
+  border: 1px dashed red;
+  width: 200px;
+  padding: 3px;
+  text-align: center;
 }
 
 .container {
@@ -40,11 +40,10 @@ h1 {
   border-radius: 15px;
   padding: 10px;
 
-.expense-input {
+  .expense-input {
     width: 200px;
     margin-bottom: 10px;
     padding: 5px;
-    
   }
 
   .expense-input-red {
@@ -59,7 +58,6 @@ h1 {
     background: rgb(0, 148, 255);
   }
 
-  
   button {
     width: 208px;
     background: rgb(0, 148, 255);

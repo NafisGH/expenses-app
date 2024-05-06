@@ -57,13 +57,14 @@ function initLimit() {
   return (limit = parseInt(limitExpenseNode.innerText));
 }
 initLimit();
+console.log('initLimit()', initLimit());
 
 const expensesFromStorageString = localStorage.getItem(STORAGE_LABLE_EXPENSE);
 const expensesFromStorage = JSON.parse(expensesFromStorageString);
 
 let expenses = [];
 if (Array.isArray(expensesFromStorage)) {
-  expenses = expensesFromStorage
+  expenses = expensesFromStorage;
 }
 render();
 
@@ -73,7 +74,6 @@ function initApp() {
   limitExpenseNode.innerText = limit;
   sumExpenseNode.innerText = getTotalSum(expenses);
   // statusExpenseNode.innerText = STATUS_IN_LIMIT;
-  
 }
 
 // Слушатель по нажатию на Enter
@@ -89,25 +89,31 @@ btnResetExpensesNode.addEventListener("click", resetAllExpenses);
 buttonNode.addEventListener("click", function () {
   // плучаем значение из поля ввода
   const expense = getExpense();
-  // Проверяем, является ли значение пустой строкой или не числом
-  // if (isNaN(expense) || expense === "") {
-  //   inputNode.classList.add("expense-input-red")
-  //   return;
-  // }
 
   // Получаем категорию записываем в переменную и проверяем ее
   const currentCategory = getSelectedCategory();
-  console.log('currentCategory', currentCategory)
-  // Проверяем, выбрана ли категория
+  console.log("currentCategory", currentCategory);
 
+  
 
-  if ((isNaN(expense) || expense === "") && (isNaN(currentCategory) || !currentCategory)) {
-    inputNode.classList.add("expense-input-red")
-    selectSingle_title.classList.add("__select__title-red")
+  if (!initLimit()) {
+    alert("Пожалуйста, укажите лимит.");
+    return;
+  }
+
+  // Проверяем, является ли инпут и пустой строкой или не числом
+  if (isNaN(expense) || expense === "") {
+    inputNode.classList.add("expense-input-red");
+    alert("Пожалуйста, введите сумму.");
     return;
   } else {
-    inputNode.classList.remove("expense-input-red")
-    selectSingle_title.classList.remove("__select__title-red")
+    inputNode.classList.remove("expense-input-red");
+  }
+
+  // Проверка выбрана ли категория
+  if (!currentCategory) {
+    alert("Пожалуйста, выберите категорию.");
+    return;
   }
 
   // Создаем обьект с суммой и категорией
@@ -129,7 +135,6 @@ buttonNode.addEventListener("click", function () {
 // Ф-ия Сброс всех данных до начальных значений
 function resetAllExpenses() {
   expenses.length = 0;
-  // limitExpenseNode.innerText = 0;
   sumExpenseNode.innerText = `0 `;
   statusExpenseNode.innerText = STATUS_IN_LIMIT;
   statusExpenseNode.classList.remove(STATUS_OUT_OF_LIMIT_CLASSNAME);
@@ -137,8 +142,8 @@ function resetAllExpenses() {
   restCategory();
   masageLimit.classList.remove("masage-limit-active");
   masageLimit.classList.add("masage-limit-hidden");
-  inputNode.classList.remove("expense-input-red")
-  selectSingle_title.classList.remove("__select__title-red")
+  inputNode.classList.remove("expense-input-red");
+  selectSingle_title.classList.remove("__select__title-red");
 }
 
 // Ф-ия Получения категории
@@ -159,7 +164,7 @@ function changeLimitHandler() {
   limitExpenseNode.innerText = newLimitValue;
   limit = newLimitValue;
 
-  //
+  // сохраняем в локал сторадж сумму лимита
   localStorage.setItem(STORAGE_LABLE_LIMIT, newLimitValue);
 }
 
@@ -182,6 +187,7 @@ function getSelectedCategory() {
   return selectedCategory;
 }
 
+// ф-ия сохранения в локал сторадж массива обьектов с данными
 function saveExpensesStorage() {
   const expenseString = JSON.stringify(expenses);
   localStorage.setItem(STORAGE_LABLE_EXPENSE, expenseString);
@@ -223,8 +229,9 @@ function renderStatus() {
     statusExpenseNode.classList.remove(STATUS_OUT_OF_LIMIT_CLASSNAME); // Убираем класс, если он был добавлен ранее
   } else {
     statusExpenseNode.classList.add(STATUS_OUT_OF_LIMIT_CLASSNAME);
-    statusExpenseNode.innerText = `${STATUS_OUT_OF_LIMIT} на ${total - limit} ${currencyRub}`;
-    
+    statusExpenseNode.innerText = `${STATUS_OUT_OF_LIMIT} на ${
+      total - limit
+    } ${currencyRub}`;
   }
 }
 
