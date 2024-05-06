@@ -166,6 +166,7 @@ function changeLimitHandler() {
 
   // сохраняем в локал сторадж сумму лимита
   localStorage.setItem(STORAGE_LABLE_LIMIT, newLimitValue);
+  render()
 }
 
 // Ф-ия Добавление траты по нажатию на Enter
